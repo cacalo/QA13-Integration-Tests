@@ -15,7 +15,7 @@ describe('complexOperation - Unit Tests', () => {
   });
 
 
- describe('calculateArea', () => {
+  describe('calculateArea', () => {
     test('Unsupported area', () => {
       expect(complexOperations.calculateArea("pentagon",5,7)).toBe("pentagon is not supported");
     });
@@ -82,11 +82,14 @@ describe('complexOperation - Unit Tests', () => {
     test('Second argument is not a string', () => {
       expect(complexOperations.sortArrayOfObjectsByKey(["John","Ann","Clair"],5)).toEqual("The second param should be an string");
     });
-    test('Second argument is not a string', () => {
+    test('Missing age property', () => {
       expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair"},{name:"John",age:40}],"age")).toEqual("Some elements in the array does not have the age property");
     });
     test('Correct parameters', () => {
       expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair",age:20},{name:"John",age:40}],"age")).toEqual([{"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}, {"age": 40, "name": "John"}]);
+    });
+    test('Correct parameters with equal params', () => {
+      expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair",age:20},{name:"Clair",age:20}],"age")).toEqual([{"age": 20, "name": "Clair"}, {"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}]);
     });
   });
 
