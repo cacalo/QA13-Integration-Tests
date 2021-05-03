@@ -6,10 +6,10 @@ import * as basicOperations from './basicOperations';
 describe('complexOperation - Unit Tests', () => {
   describe('checkEmail', () => {
     beforeEach(() => {
-    jest.restoreAllMocks()
+    jest.restoreAllMocks();
   })
     test('Email is not a string', () => {
-      jest.spyOn(basicOperations, "isString").mockReturnValue(false)
+      jest.spyOn(basicOperations, "isString").mockReturnValue(false);
       expect(complexOperations.checkEmail(12346)).toBe("The email should be an string");
     });
     test('Email is an invalid string', () => {
@@ -27,7 +27,7 @@ describe('complexOperation - Unit Tests', () => {
 
   describe('calculateArea', () => {
     beforeEach(() => {
-      jest.restoreAllMocks()
+      jest.restoreAllMocks();
     })
     test('Empty figure', () => {
       jest.spyOn(basicOperations, "isString").mockReturnValue(true);
@@ -93,15 +93,18 @@ describe('complexOperation - Unit Tests', () => {
       jest.restoreAllMocks()
     })
     test('First parameter not a number', () => {
-      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(false).mockReturnValueOnce(true).mockReturnValueOnce(true);
+      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(false).mockReturnValueOnce(true)
+      .mockReturnValueOnce(true);
       expect(complexOperations.sumGreaterThan("2a",5,7)).toEqual('The params should be numbers');
     });
     test('Second parameter not a number', () => {
-      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(true).mockReturnValueOnce(false).mockReturnValueOnce(true);
+      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(true).mockReturnValueOnce(false)
+      .mockReturnValueOnce(true);
       expect(complexOperations.sumGreaterThan(2,"5",7)).toEqual('The params should be numbers');
     });
     test('Third parameter not a number', () => {
-      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(false);
+      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(true).mockReturnValueOnce(true)
+      .mockReturnValueOnce(false);
       expect(complexOperations.sumGreaterThan(2,5,"7")).toEqual('The params should be numbers');
     });
     test('First two numbers added greater than third number', () => {
@@ -122,11 +125,13 @@ describe('complexOperation - Unit Tests', () => {
     })
     test('First item is not an array', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValueOnce(false).mockReturnValueOnce(true);
-      expect(complexOperations.intersectionBetweenArrays("string",["something1","something2"])).toBe('The params should be arrays');
+      expect(complexOperations.intersectionBetweenArrays("string",
+      ["something1","something2"])).toBe('The params should be arrays');
     });
     test('Second item is not an array', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValueOnce(true).mockReturnValueOnce(false);
-      expect(complexOperations.intersectionBetweenArrays(["something1","something2"],"string")).toBe('The params should be arrays');
+      expect(complexOperations.intersectionBetweenArrays(
+        ["something1","something2"],"string")).toBe('The params should be arrays');
     });
     test('No arrays matching', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
@@ -146,31 +151,41 @@ describe('complexOperation - Unit Tests', () => {
     })
     test('First argument is not an array', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(false);
-      expect(complexOperations.sortArrayOfObjectsByKey("John,Ann,Clair","name")).toEqual("The first param should be an array");
+      expect(complexOperations.sortArrayOfObjectsByKey("John,Ann,Clair","name")).toEqual(
+        "The first param should be an array");
     });
     test('Second argument is not a string', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
       jest.spyOn(basicOperations, "isString").mockReturnValue(false);
-      expect(complexOperations.sortArrayOfObjectsByKey(["John","Ann","Clair"],5)).toEqual("The second param should be an string");
+      expect(complexOperations.sortArrayOfObjectsByKey(["John","Ann","Clair"],5)).toEqual(
+        "The second param should be an string");
     });
     test('Missing age property', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
       jest.spyOn(basicOperations, "isString").mockReturnValue(true);
       jest.spyOn(basicOperations, "arrayElementsAreObjectWithKey").mockReturnValue(false);
-      expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair"},{name:"John",age:40}],"age")).toEqual("Some elements in the array does not have the age property");
+      expect(complexOperations.sortArrayOfObjectsByKey(
+        [{name:"Ann",age:25},{name:"Clair"},{name:"John",age:40}],"age")).toEqual(
+          "Some elements in the array does not have the age property");
     });
     test('Correct parameters', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
       jest.spyOn(basicOperations, "isString").mockReturnValue(true);
       jest.spyOn(basicOperations, "arrayElementsAreObjectWithKey").mockReturnValueOnce(1).mockReturnValueOnce(-1);
-      jest.spyOn(basicOperations, "sortArrayByKey").mockReturnValue([{"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}, {"age": 40, "name": "John"}]);
-      expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair",age:20},{name:"John",age:40}],"age")).toEqual([{"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}, {"age": 40, "name": "John"}]);
+      jest.spyOn(basicOperations, "sortArrayByKey").mockReturnValue(
+        [{"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}, {"age": 40, "name": "John"}]);
+      expect(complexOperations.sortArrayOfObjectsByKey(
+        [{name:"Ann",age:25},{name:"Clair",age:20},{name:"John",age:40}],"age")).toEqual(
+          [{"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}, {"age": 40, "name": "John"}]);
     });
     test('Correct parameters with equal params', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
       jest.spyOn(basicOperations, "isString").mockReturnValue(true);
-      jest.spyOn(basicOperations, "sortArrayByKey").mockReturnValue([{"age": 20, "name": "Clair"}, {"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}]);
-      expect(complexOperations.sortArrayOfObjectsByKey([{name:"Ann",age:25},{name:"Clair",age:20},{name:"Clair",age:20}],"age")).toEqual([{"age": 20, "name": "Clair"}, {"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}]);
+      jest.spyOn(basicOperations, "sortArrayByKey").mockReturnValue(
+        [{"age": 20, "name": "Clair"}, {"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}]);
+      expect(complexOperations.sortArrayOfObjectsByKey(
+        [{name:"Ann",age:25},{name:"Clair",age:20},{name:"Clair",age:20}],"age")).toEqual(
+          [{"age": 20, "name": "Clair"}, {"age": 20, "name": "Clair"}, {"age": 25, "name": "Ann"}]);
     });
   });
 
@@ -184,8 +199,10 @@ describe('complexOperation - Unit Tests', () => {
     });
     test('An argument is not a number', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
-      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(false).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true);
-      expect(complexOperations.numberOfOddAndEvenNumbers([1,2,3,"4",5,6,7])).toEqual("The array should have only numbers");
+      jest.spyOn(basicOperations, "isNumber").mockReturnValueOnce(false).mockReturnValueOnce(true).mockReturnValueOnce(
+        true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true).mockReturnValueOnce(true);
+      expect(complexOperations.numberOfOddAndEvenNumbers([1,2,3,"4",5,6,7])).toEqual(
+        "The array should have only numbers");
     });
     test('Correct arguments', () => {
       jest.spyOn(basicOperations, "isArray").mockReturnValue(true);
